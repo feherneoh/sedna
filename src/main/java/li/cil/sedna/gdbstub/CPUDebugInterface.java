@@ -1,8 +1,8 @@
 package li.cil.sedna.gdbstub;
 
-import li.cil.sedna.riscv.exception.R5MemoryAccessException;
-
 import java.util.function.LongConsumer;
+
+import li.cil.sedna.exception.CPUMemoryAccessException;
 
 public interface CPUDebugInterface {
     long getProgramCounter();
@@ -13,9 +13,9 @@ public interface CPUDebugInterface {
 
     long[] getGeneralRegisters();
 
-    byte[] loadDebug(final long address, final int size) throws R5MemoryAccessException;
+    byte[] loadDebug(final long address, final int size) throws CPUMemoryAccessException;
 
-    int storeDebug(final long address, final byte[] data) throws R5MemoryAccessException;
+    int storeDebug(final long address, final byte[] data) throws CPUMemoryAccessException;
 
     void addBreakpointListener(LongConsumer listener);
 

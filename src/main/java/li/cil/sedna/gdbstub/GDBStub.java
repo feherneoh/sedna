@@ -1,6 +1,6 @@
 package li.cil.sedna.gdbstub;
 
-import li.cil.sedna.riscv.exception.R5MemoryAccessException;
+import li.cil.sedna.exception.CPUMemoryAccessException;
 import li.cil.sedna.utils.ByteBufferUtils;
 import li.cil.sedna.utils.HexUtils;
 import org.apache.logging.log4j.LogManager;
@@ -278,7 +278,7 @@ public final class GDBStub {
             try {
                 final byte[] mem = cpu.loadDebug(address, length);
                 HexFormat.of().formatHex(w, mem);
-            } catch (final R5MemoryAccessException e) {
+            } catch (final CPUMemoryAccessException e) {
                 w.write("E14");
             }
         }
@@ -305,7 +305,7 @@ public final class GDBStub {
                 } else {
                     w.write("OK");
                 }
-            } catch (final R5MemoryAccessException e) {
+            } catch (final CPUMemoryAccessException e) {
                 w.write("E14");
             }
         }
